@@ -1,32 +1,42 @@
-import React, { useState, useEffect } from "react";
-import Preloader from "../src/components/Pre";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Projects from "./components/Projects/Projects";
-import Footer from "./components/Footer";
-import Resume from "./components/Resume/ResumeNew";
+import React, { useEffect, useState } from "react";
+// packages
 import {
-  BrowserRouter as Router,
+  Navigate,
   Route,
+  BrowserRouter as Router,
   Routes,
-  Navigate
 } from "react-router-dom";
+// components
+import Preloader from "../src/components/Pre";
+import About from "./components/About/About";
+import Certifications from "./components/Certifications/Certifications";
+import Footer from "./components/Footer";
+import Home from "./components/Home/Home";
+import Navbar from "./components/Navbar";
+import Projects from "./components/Projects/Projects";
+import Resume from "./components/Resume/ResumeNew";
 import ScrollToTop from "./components/ScrollToTop";
-import "./style.css";
-import "./App.css";
+
+// styles
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import "./style.css";
 
 function App() {
-  const [load, upadateLoad] = useState(true);
+  // use state
+  const [load, setLoad] = useState(true);
+
+  // ------------------------------------------ use effects ------------------------------------------ //
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      upadateLoad(false);
+      setLoad(false);
     }, 1200);
 
     return () => clearTimeout(timer);
   }, []);
+
+  // ------------------------------------------ render ui ------------------------------------------ //
 
   return (
     <Router>
@@ -39,7 +49,8 @@ function App() {
           <Route path="/project" element={<Projects />} />
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
-          <Route path="*" element={<Navigate to="/"/>} />
+          <Route path="/certifications" element={<Certifications />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />
       </div>

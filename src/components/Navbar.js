@@ -1,25 +1,29 @@
 import React, { useState } from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
-import logo from "../Assets/logo.png";
+
+// packages
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
-import { CgGitFork } from "react-icons/cg";
-import { ImBlog } from "react-icons/im";
+
+// icons
 import {
   AiFillStar,
-  AiOutlineHome,
   AiOutlineFundProjectionScreen,
+  AiOutlineHome,
   AiOutlineUser,
 } from "react-icons/ai";
-
-import { CgFileDocument } from "react-icons/cg";
+import { CgFileDocument, CgGitFork } from "react-icons/cg";
+import { PiCertificateBold } from "react-icons/pi";
 
 function NavBar() {
+  // use state
   const [expand, updateExpanded] = useState(false);
-  const [navColour, updateNavbar] = useState(false);
+  const [navbar, updateNavbar] = useState(false);
 
+  // ------------------------------------------ functionalities ------------------------------------------ //
+  
   function scrollHandler() {
     if (window.scrollY >= 20) {
       updateNavbar(true);
@@ -30,12 +34,14 @@ function NavBar() {
 
   window.addEventListener("scroll", scrollHandler);
 
+  // ------------------------------------------ render ui ------------------------------------------ //
+
   return (
     <Navbar
       expanded={expand}
       fixed="top"
       expand="md"
-      className={navColour ? "sticky" : "navbar"}
+      className={navbar ? "sticky" : "navbar"}
     >
       <Container>
         <Navbar.Brand href="/" className="d-flex"></Navbar.Brand>
@@ -90,16 +96,16 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
-            {/* <Nav.Item>
+            <Nav.Item>
               <Nav.Link
-                href="https://soumyajitblogs.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
+                as={Link}
+                to="/certifications"
+                onClick={() => updateExpanded(false)}
               >
-                <ImBlog style={{ marginBottom: "2px" }} /> Blogs
+                <PiCertificateBold style={{ marginBottom: "2px" }} />{" "}
+                Certifications
               </Nav.Link>
-            </Nav.Item> */}
-
+            </Nav.Item>
             <Nav.Item className="fork-btn">
               <Button
                 href="https://github.com/soumyajit4419/Portfolio"
